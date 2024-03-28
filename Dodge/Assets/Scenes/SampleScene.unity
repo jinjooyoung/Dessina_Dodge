@@ -330,9 +330,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69fcf09e4de33a498fd99f067f0b828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  test_int: 0
+  test_float: 0
+  test_string: 
+  test_bool: 1
   test_bool1: 0
   test_bool2: 0
   test_while: 0
+  test_arrary_int: 000000000000000000000000
 --- !u!4 &1829892817
 Transform:
   m_ObjectHideFlags: 0
