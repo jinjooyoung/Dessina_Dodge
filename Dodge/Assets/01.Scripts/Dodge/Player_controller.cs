@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Player_controller : MonoBehaviour
 {
-    public Rigidbody player_rigidbody;
-    public float speed = 8f;
-    int test;       //그럼 이것처럼 앞에 퍼블릭 같은게 없는거는 뭐지?
-
+    public Rigidbody player_rigidbody;          //이동에 사용할 리지드바디 컴포넌트
+    public float speed = 8f;                    //이동속력
+    int test;
+   
+    private void Awake()
+    {
+        
+    }
     // Start is called before the first frame update
     void Start()
     {
-        //게임 오브젝트에서 RigidBody 컴포넌트를 찾아 player_rigidbody에 할당
+        //게임 오브젝트에서 Rigidbody 컴포넌트를 찾아 player_rigidbody에 할당
         player_rigidbody = GetComponent<Rigidbody>();
-
-        //Debug.Log("안녕하세요.");
     }
 
     // Update is called once per frame
@@ -29,37 +31,18 @@ public class Player_controller : MonoBehaviour
         float zSpeed = zInput * speed;
 
         //Vector3 속도를 (xSpeed, 0, zSpeed)로 생성
-        Vector3 newVelocity = new Vector3(xSpeed, 0, zSpeed);
+        Vector3 newVelocity = new Vector3 (xSpeed, 0, zSpeed);
         //리지드바디의 속도에 newVelocity 할당
         player_rigidbody.velocity = newVelocity;
-
-
-
-        /*if (Input.GetKey(KeyCode.UpArrow) == true)
-        {
-            player_rigidbody.AddForce(0f, 0f, speed);
-        }
-        if (Input.GetKey(KeyCode.DownArrow) == true)
-        {
-            player_rigidbody.AddForce(0f, 0f, -speed);
-
-        }
-        if (Input.GetKey(KeyCode.LeftArrow) == true)
-        {
-            player_rigidbody.AddForce(-speed, 0f, 0f);
-
-        }
-        if (Input.GetKey(KeyCode.RightArrow) == true)
-        {
-            player_rigidbody.AddForce(speed, 0f, 0f);
-
-        }*/
     }
     public void Die()
     {
+        //자신의 게임 오브젝트를 비활성화
         gameObject.SetActive(false);
 
+        //씬에 존재하는 GameManager 타입의 오브젝트를 찾아서 가져오기
         GameManager gameManager = FindObjectOfType<GameManager>();
+        // 가져온 GameManager 오브젝트의 EndGame() 메서드 실행
         gameManager.EndGame();
     }
 }
